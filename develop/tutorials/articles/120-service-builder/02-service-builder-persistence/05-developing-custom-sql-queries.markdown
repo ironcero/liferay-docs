@@ -120,7 +120,7 @@ how you could write the `EntryFinderImpl` class:
         try {
             session = openSession();
 
-            String sql = _customSQL.get(
+            String sql = CustomSQLUtil.get(
                 getClass(),
                 FIND_BY_ENTRYNAME_ENTRYMESSAGE_GUESTBOOKNAME);
 
@@ -153,9 +153,7 @@ how you could write the `EntryFinderImpl` class:
     public static final String FIND_BY_ENTRYNAME_ENTRYMESSAGE_GUESTBOOKNAME =
         EntryFinder.class.getName() +
             ".findByEntryNameEntryMessageGuestbookName";
-
-    @ServiceReference(type=CustomSQL.class)
-    private CustomSQL _customSQL;
+            
 
 The custom finder method opens a new Hibernate session and uses Liferay's
 `CustomSQL.get(Class<?> clazz, String id)` method to get the custom SQL to use
